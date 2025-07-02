@@ -26,13 +26,20 @@ function App() {
   // Apply theme to document
   useEffect(() => {
     const root = document.documentElement;
-    root.className = ''; // Reset classes
+    const body = document.body;
+    
+    // Reset classes
+    root.className = '';
+    body.className = '';
     
     if (theme === 'system') {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      root.classList.add(prefersDark ? 'dark' : 'light');
+      const themeClass = prefersDark ? 'dark' : 'light';
+      root.classList.add(themeClass);
+      body.classList.add(themeClass);
     } else {
       root.classList.add(theme);
+      body.classList.add(theme);
     }
   }, [theme]);
 
@@ -43,8 +50,13 @@ function App() {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = () => {
       const root = document.documentElement;
+      const body = document.body;
+      const themeClass = mediaQuery.matches ? 'dark' : 'light';
+      
       root.className = '';
-      root.classList.add(mediaQuery.matches ? 'dark' : 'light');
+      body.className = '';
+      root.classList.add(themeClass);
+      body.classList.add(themeClass);
     };
 
     mediaQuery.addEventListener('change', handleChange);
@@ -88,7 +100,7 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen transition-all duration-300 bg-gradient-to-br from-theme-bg-primary to-theme-bg-secondary flex items-center justify-center p-4">
+    <div className="min-h-screen transition-all duration-300 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Main Card */}
         <div className="bg-theme-surface backdrop-blur-sm border border-theme-border rounded-2xl shadow-xl p-8 transition-all duration-300">

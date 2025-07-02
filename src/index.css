@@ -67,6 +67,20 @@
   --theme-gauge-bg: #cccccc;
 }
 
+/* Apply theme background to html and body */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--theme-bg-primary), var(--theme-bg-secondary));
+  transition: background var(--transition-duration) ease;
+}
+
+/* Ensure root div takes full height */
+#root {
+  min-height: 100vh;
+}
+
 /* Custom Utility Classes */
 .bg-theme-bg-primary {
   background-color: var(--theme-bg-primary);
